@@ -5,7 +5,7 @@ import multer from 'multer';
 const upload = multer({
     storage: multer.diskStorage({
         // 保存先
-        destination: './public/uploads',
+        destination: './public/uploads/',
         // ファイル名
         filename: (req, file, cb) => cb(null, Get_FileName(file.originalname)),
     }),
@@ -24,12 +24,13 @@ const apiRoute = nextConnect({
 // multerファイル保存をミドルウェアとして指定（Field:fileのみ受付）
 apiRoute.use((req, res, next) => {
     // メソッドタイプと保存するファイルか確認
-    if ((req.method === "POST") && (is_Correctfile(req.file.originalname))){
+    if ((req.method === "POST") && (is_Correct(req))){
         // multer処理へ（ファイル保存）
         next();
     }    
-}, upload.single('file')
-);
+},
+// single'file'はフィールドネームのフィルタリング　post時に指定しているのと合致しないと保存できない 
+upload.single('file'));
 
 // レスポンス
 apiRoute.post((req, res) => {
@@ -47,7 +48,11 @@ export const config = {
 };
 
 // 保存するか否か判断
-function is_Correctfile(original_name){
+function is_Correct(req){
+    // const id = req.query.id;     // クエリーパラメーター
+    // const key = req.query.key;   // クエリーパラメーター
+    // const file = req.file.originalname;  // ファイル名
+    
     // テストのため全スルー
     return true;
 }

@@ -1,3 +1,16 @@
+
+/* グローバルに使用 */
+.input{
+  height: 5vh;
+  width: 20vw;
+}
+
+.button {
+  height: 5vh;
+  width: 10vw;
+  cursor: pointer;
+}
+
 .container {
   min-height: 100vh;
   padding: 0 0.5rem;
