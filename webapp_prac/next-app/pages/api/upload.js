@@ -1,6 +1,9 @@
 import nextConnect from 'next-connect';
 import multer from 'multer';
 
+// アップロードファイル名
+const FILENAME_UPLOAD = 'upload.png';
+
 // multer処理（オプション設定）
 const upload = multer({
     storage: multer.diskStorage({
@@ -59,6 +62,6 @@ function is_Correct(req){
 
 // 保存名変更ハンドラ
 function Get_FileName(original_name){
-    // テストのため全スルー
-    return original_name;
+    // 固定名
+    return FILENAME_UPLOAD;
 }
