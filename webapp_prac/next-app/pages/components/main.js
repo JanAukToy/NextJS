@@ -72,7 +72,7 @@ function Layout_btn_Show(prop) {
         if (Elem_InputFile.files[0] != null){
             // ブラウザキャッシュ回避で時間付与（毎回読み込み）
             const date = new Date;
-            Elem_Image.src='/uploads/' + prop.FILENAME_Upload + '?' + date.getTime();
+            Elem_Image.src='/api/download?filename=' + prop.FILENAME_Upload + '&time=' + date.getTime();
         }else{
             alert('Please Input File!');
         }
